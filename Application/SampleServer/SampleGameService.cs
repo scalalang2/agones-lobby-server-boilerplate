@@ -1,12 +1,15 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Agones;
 using Microsoft.Extensions.Hosting;
 
 namespace SampleServer;
 
 public class SampleGameService : BackgroundService
 {
+    private IAgonesSDK _agones = new AgonesSDK();
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         const int port = 9000;
@@ -16,6 +19,9 @@ public class SampleGameService : BackgroundService
 
         while (!stoppingToken.IsCancellationRequested)
         {
+            // assume this request is always successful
+            var _ = await _agones.ReadyAsync();
+            
             var recv = await server.ReceiveAsync(stoppingToken);
             var clientChoice = Encoding.UTF8.GetString(recv.Buffer).Trim();
 
