@@ -1,0 +1,7 @@
+agones: 
+  agones:
+    gameservers:
+      namespaces:
+        - default
+      minPort: 7000
+      maxPort: 8000
