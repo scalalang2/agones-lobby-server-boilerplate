@@ -1,0 +1,10 @@
+lobby_server: 
+  replicas: 1
+
+  image:
+    repository: scalalang22/agones-sample-server
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP

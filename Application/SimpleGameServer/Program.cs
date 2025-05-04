@@ -4,7 +4,7 @@ using SampleServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHostedService<SampleGameService>();
+builder.Services.AddHostedService<GameService>();
 
 var app = builder.Build();
 app.MapGet("/", () => "Hello :)");

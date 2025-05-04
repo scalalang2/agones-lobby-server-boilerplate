@@ -46,3 +46,15 @@ agones-extensions-5f84d45b8c-wn8sn   1/1     Running   0          11h
 agones-ping-855f486748-226mr         1/1     Running   0          11h
 agones-ping-855f486748-zmnmd         1/1     Running   0          11
 ```
+
+## 3. Build a Docker image
+```sh
+$ cd ./Application
+$ docker built -t sample-server .
+```
+
+## 4. Deploy apps 
+```sh
+$ helm install apps ./apps
+$ kubectl get pods
+```

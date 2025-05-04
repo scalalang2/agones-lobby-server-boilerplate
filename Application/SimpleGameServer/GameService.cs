@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace SampleServer;
 
-public class SampleGameService : BackgroundService
+public class GameService : BackgroundService
 {
     private IAgonesSDK _agones = new AgonesSDK();
 

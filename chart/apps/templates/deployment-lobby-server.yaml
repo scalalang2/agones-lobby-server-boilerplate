@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-lobby-server
+  labels:
+    app: lobby-server
+spec:
+  replicas: {{ .Values.lobby_server.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: lobby-server
+  template:
+    metadata:
+      labels:
+        app: lobby-server
+    spec:
+      containers:
+        - name: lobby-server
+          image: {{ .Values.lobby_server.image.repository }}:{{ .Values.lobby_server.image.tag }}
+          imagePullPolicy: {{ .Values.lobby_server.image.pullPolicy | default "IfNotPresent" }}
+          command: ["dotnet", "LobbyServer.dll"]
+          ports:
+            - containerPort: 5000
