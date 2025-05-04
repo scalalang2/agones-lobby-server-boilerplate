@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: gameserverallocation-binding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: gameserver-allocator
+  namespace: default
+roleRef:
+  kind: Role
+  name: gameserverallocation-role
+  apiGroup: rbac.authorization.k8s.io

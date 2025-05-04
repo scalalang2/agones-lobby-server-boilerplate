@@ -1,4 +1,5 @@
 using k8s;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LobbyServer;
 
@@ -6,7 +7,7 @@ public class GameServerAllocator(IKubernetes kubernetesClient)
 {
     private const string Namespace = "default";
 
-    public async Task<AllocateGameServerResponse> AllocateAsync()
+    public async Task<object> AllocateAsync()
     {
         var allocation = new AllocateGameServerRequest();
         var response = await kubernetesClient.CustomObjects.CreateNamespacedCustomObjectAsync(
@@ -16,19 +17,7 @@ public class GameServerAllocator(IKubernetes kubernetesClient)
             namespaceParameter: Namespace,
             plural: "gameserverallocations"
         );
-        
-        dynamic resp = response;
-        if (resp.status?.state == "Allocated")
-        {
-            return new AllocateGameServerResponse
-            {
-                GameServerName = resp.status.gameServerName,
-                Address = resp.status.address,
-                Port = resp.status.ports[0].port,
-                NodeName = resp.status.nodeName
-            };
-        }
-        
-        throw new Exception("Failed to allocate game server");
+
+        return response;
     }
 }

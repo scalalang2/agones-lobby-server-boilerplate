@@ -14,6 +14,7 @@ spec:
       labels:
         app: lobby-server
     spec:
+      serviceAccountName: gameserver-allocator
       containers:
         - name: lobby-server
           image: {{ .Values.lobby_server.image.repository }}:{{ .Values.lobby_server.image.tag }}

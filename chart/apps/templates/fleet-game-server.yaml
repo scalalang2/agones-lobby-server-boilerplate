@@ -6,6 +6,10 @@ spec:
   replicas: 1
   template:
     spec:
+      health:
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 3
       ports:
         - name: default
           containerPort: 9000

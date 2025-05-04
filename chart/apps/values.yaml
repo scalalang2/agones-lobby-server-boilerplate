@@ -4,7 +4,7 @@ lobby_server:
   image:
     repository: scalalang22/agones-sample-server
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   service:
-    type: ClusterIP
+    type: NodePort
