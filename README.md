@@ -50,13 +50,7 @@ agones-ping-855f486748-226mr         1/1     Running   0          11h
 agones-ping-855f486748-zmnmd         1/1     Running   0          11
 ```
 
-## 3. Build a Docker image
-```sh
-$ cd ./Application
-$ docker built -t sample-server .
-```
-
-## 4. Deploy apps 
+## 3. Deploy apps 
 ```sh
 $ helm install apps ./chart/apps
 $ kubectl get pods
@@ -74,7 +68,7 @@ NAME                            AGE
 simple-game-server-autoscaler   4m29s
 ```
 
-## 5. Tunneling for the lobby server
+## 4. Tunneling for the lobby server
 ```sh
 $ kubectl port-forward service/apps-service 5000:5000
 ```
